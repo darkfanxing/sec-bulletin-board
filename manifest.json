@@ -3,12 +3,12 @@
     "name": "SEC Bulletin Board",
     "icons": [
         {
-            "src":"icons/bulletin-board.png",
-        　　 "sizes": "128×128",
-        　　 "type": "image/png"
-    　　 }
+            "src": "icons/bulletin-board.png",
+            "sizes": "128×128",
+            "type": "image/png"
+        }
     ],
-　  "background_color": "#000",
+    "background_color": "#000",
     "start_url": "/",
-　  "display": "standalone"
+    "display": "standalone"
 }

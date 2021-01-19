@@ -6,7 +6,7 @@
     　　"sizes": "128×128",
     　　"type": "image/png"
     　　}],
-    　"start_url": "client.html",
+    　"start_url": "http://127.0.0.1:8887/",
     　"background_color": "#000",
     　"display": "standalone"
 }

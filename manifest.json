@@ -4,10 +4,11 @@
     "icons": [
         {
             "src": "icons/bulletin-board.png",
-            "sizes": "128×128",
+            "sizes": "256x256",
             "type": "image/png"
         }
     ],
     "background_color": "#000",
+    "start_url": "/sec-bulletin-board/client.html",
     "display": "standalone"
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="manifest" href="manifest.json">
     <title>Document</title>
 </head>
 <body>
@@ -152,6 +153,14 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/getDates.js"></script>
 <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js')
+            .then(function(registration) {})
+            .catch(function(err) {})
+        })
+    }
+    
     let host = document.getElementById("host-ip")
 
     document.getElementById("check-ip").addEventListener('click', (e) => {

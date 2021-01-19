@@ -1,0 +1,12 @@
+{
+    　"short_name": "Bulletin",
+    　"name": "SEC Bulletin Board",
+    　"icons": [{
+    　　"src":"icons/bulletin-board.png",
+    　　"sizes": "128×128",
+    　　"type": "image/png"
+    　　}],
+    　"start_url": "client.html",
+    　"background_color": "#000",
+    　"display": "standalone"
+}

@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="message"></div>
     <div class="row justify-content-around">
         <div class="col-12 col-md-6">
             <div class="card mx-auto mt-5" style="width: 80%;">
@@ -153,6 +154,8 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/getDates.js"></script>
 <script>
+    let message = document.getElementById("message")
+
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
         navigator.serviceWorker.register('sw.js')
@@ -241,10 +244,13 @@
 
     let data;
 
+    message.innerHTML = host.value
+
     fetch(host.value + "/data.json")
         .then((response) => response.json())
         .then((_data) => {
             data = _data
+            message.innerHTML += "\n" + "yes"
             document.getElementById("reminder-text").value = data["reminder"];
         })
 

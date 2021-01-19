@@ -1,12 +1,14 @@
 {
-    　"short_name": "Bulletin",
-    　"name": "SEC Bulletin Board",
-    　"icons": [{
-    　　"src":"icons/bulletin-board.png",
-    　　"sizes": "128×128",
-    　　"type": "image/png"
-    　　}],
-    　"start_url": "http://127.0.0.1:8887/",
-    　"background_color": "#000",
-    　"display": "standalone"
+    "short_name": "Bulletin",
+    "name": "SEC Bulletin Board",
+    "icons": [
+        {
+            "src":"icons/bulletin-board.png",
+        　　 "sizes": "128×128",
+        　　 "type": "image/png"
+    　　 }
+    ],
+　  "start_url": "http://127.0.0.1:8887/",
+　  "background_color": "#000",
+　  "display": "standalone"
 }

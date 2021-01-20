@@ -170,7 +170,7 @@
 
     document.getElementById("check-ip").addEventListener('click', (e) => {
         localStorage.setItem("host-ip", host.value)
-        window.location.reload()
+        message.innerHTML = host.value
     })
 
     if (localStorage.getItem("host-ip") != "") {
@@ -296,7 +296,7 @@
                 }),
             }).then((res) => {
                 if (res.ok) {
-                    window.location.reload()
+                    // window.location.reload()
                 }
             });
         }
@@ -336,7 +336,7 @@
                 }),
             }).then((res) => {
                 if (res.ok) {
-                    window.location.reload()
+                    // window.location.reload()
                 }
             });
         }
@@ -356,7 +356,7 @@
         }).then((res) => {
             if (res.ok) {
                 document.getElementById("reminder-text").value = ""
-                window.location.reload()
+                    // window.location.reload()
             }
         });
     });

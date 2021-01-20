@@ -170,6 +170,7 @@
 
     document.getElementById("check-ip").addEventListener('click', (e) => {
         localStorage.setItem("host-ip", host.value)
+        window.location.reload()
     })
 
     if (localStorage.getItem("host-ip") != "") {
@@ -250,6 +251,7 @@
 
     fetch(host.value).then((res) => res.json()).then((d) => {
         message.innerHTML += "\n" + d
+        console.log(d)
     })
 
     fetch(host.value + "/data.json")

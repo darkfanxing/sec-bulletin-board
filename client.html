@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="manifest" crossorigin="use-credentials" href="manifest.json">
     <title>Document</title>
 </head>
+
 <body>
     <div id="message"></div>
     <div class="row justify-content-around">
@@ -29,7 +31,7 @@
                         <div class="container">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                  <span class="input-group-text" id="item">行程項目</span>
+                                    <span class="input-group-text" id="item">行程項目</span>
                                 </div>
                                 <input name="schedule" id="inputItem" type="text" class="form-control" aria-label="Small" aria-describedby="item">
                             </div>
@@ -61,7 +63,7 @@
                         <div class="form-group row mx-auto" style="width: 65%;">
                             <label class="mr-sm-2" for="scheduleItem">行程項目</label>
                             <select class="custom-select mr-sm-2" id="scheduleItem" name="schedule"></select>
-                          </div>
+                        </div>
                         <hr width="80%" class="mx-auto my-4" />
                         <button type="submit" class="btn btn-primary">提交</button>
                     </form>
@@ -90,7 +92,7 @@
                         <div class="container">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                  <span class="input-group-text" id="add-name">姓名</span>
+                                    <span class="input-group-text" id="add-name">姓名</span>
                                 </div>
                                 <input name="name" id="add-leave-officer-name" type="text" class="form-control" aria-label="Small" aria-describedby="add-name">
                             </div>
@@ -140,7 +142,7 @@
                 <div class="container mt-5">
                     <div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
-                        <span class="input-group-text" id="ip-description">IP</span>
+                            <span class="input-group-text" id="ip-description">IP</span>
                         </div>
                         <input name="host" id="host-ip" type="text" class="form-control" aria-label="Small" aria-describedby="ip-description">
                     </div>
@@ -158,12 +160,12 @@
 
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-        navigator.serviceWorker.register('sw.js')
-            .then(function(registration) {})
-            .catch(function(err) {})
+            navigator.serviceWorker.register('sw.js')
+                .then(function(registration) {})
+                .catch(function(err) {})
         })
     }
-    
+
     let host = document.getElementById("host-ip")
 
     document.getElementById("check-ip").addEventListener('click', (e) => {
@@ -173,24 +175,24 @@
     if (localStorage.getItem("host-ip") != "") {
         host.value = localStorage.getItem("host-ip")
     }
-    
+
 
     function getItem(e) {
         e.preventDefault();
 
         let formData = new FormData(document.getElementById('removeSchedule')).entries()
         formData = Object.fromEntries(formData)
-        
+
         fetch(host.value + '/api/getSchedules', {
-            method: 'POST',
-            body: new URLSearchParams({
-                'time': JSON.stringify(formData),
-            }),
-        })
+                method: 'POST',
+                body: new URLSearchParams({
+                    'time': JSON.stringify(formData),
+                }),
+            })
             .then((res) => res.json())
             .then((data) => {
                 document.getElementById('scheduleItem').innerHTML = ""
-                
+
                 data["item"].forEach((item) => {
                     let option = document.createElement("option")
                     option.innerText = item
@@ -207,15 +209,15 @@
         formData = Object.fromEntries(formData)
 
         fetch(host.value + '/api/getLeaveOfficers', {
-            method: 'POST',
-            body: new URLSearchParams({
-                'leaveOfficer': JSON.stringify(formData),
-            }),
-        })
+                method: 'POST',
+                body: new URLSearchParams({
+                    'leaveOfficer': JSON.stringify(formData),
+                }),
+            })
             .then((res) => res.json())
             .then((data) => {
                 document.getElementById('leaveOfficers').innerHTML = ""
-                
+
                 data["names"].forEach((name) => {
                     console.log(name)
                     let option = document.createElement("option")
@@ -246,6 +248,10 @@
 
     message.innerHTML = host.value
 
+    fetch(host.value).then((res) => res.json()).then((d) => {
+        message.innerHTML += "\n" + d
+    })
+
     fetch(host.value + "/data.json")
         .then((response) => response.json())
         .then((_data) => {
@@ -256,10 +262,10 @@
 
     document.getElementById('addSchedule').addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         let formData = new FormData(document.getElementById('addSchedule')).entries()
         formData = Object.fromEntries(formData)
-        
+
         if (formData["schedule"]) {
             fetch(host.value + '/api/addSchedule', {
                 method: 'POST',
@@ -279,7 +285,7 @@
 
         let formData = new FormData(document.getElementById('removeSchedule')).entries()
         formData = Object.fromEntries(formData)
-        
+
         if (formData["schedule"]) {
             fetch(host.value + '/api/removeSchedule', {
                 method: 'POST',
@@ -296,11 +302,11 @@
 
     document.getElementById('add-leave-officer').addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         let formData = new FormData(document.getElementById('add-leave-officer')).entries()
         formData = Object.fromEntries(formData)
-        
-        if(formData["name"]) {
+
+        if (formData["name"]) {
             fetch(host.value + '/api/addLeaveOfficer', {
                 method: 'POST',
                 body: new URLSearchParams({
@@ -316,11 +322,11 @@
 
     document.getElementById('remove-leave-officer').addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         let formData = new FormData(document.getElementById('remove-leave-officer')).entries()
         formData = Object.fromEntries(formData)
-        
-        if(formData["name"]) {
+
+        if (formData["name"]) {
             fetch(host.value + '/api/removeLeaveOfficer', {
                 method: 'POST',
                 body: new URLSearchParams({
@@ -339,7 +345,7 @@
 
         let formData = new FormData(document.getElementById('reminder')).entries()
         formData = Object.fromEntries(formData)
-        
+
         fetch(host.value + '/api/changeReminder', {
             method: 'POST',
             body: new URLSearchParams({
@@ -375,6 +381,6 @@
     document.getElementById("remove-leave-officer-date-selector").addEventListener('change', (e) => {
         document.getElementById('leaveOfficers').addEventListener('click', getLeaveOfficers)
     })
-
 </script>
+
 </html>

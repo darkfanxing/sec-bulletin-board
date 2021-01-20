@@ -31,7 +31,7 @@ def change_dates():
         json.dump(new_data, json_file, ensure_ascii=False)
         
     
-    return json.dumps({"test": "123"})
+    return "", 204
 
 @app.route("/api/addSchedule" ,methods=["POST"])
 def add_schedule():
@@ -149,6 +149,10 @@ def change_reminder():
         json.dump(data, json_file, ensure_ascii=False)
     
     return "", 204
+
+@app.route("/")
+def test():
+    return json.dumps({"123": 456})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=9000)

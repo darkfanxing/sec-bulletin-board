@@ -1,0 +1,17 @@
+td {
+    min-width: 150px;
+}
+
+ul {
+    margin: 0;
+}
+
+.fix-mid {
+    width: 85vw;
+    position: fixed!important;
+    right: calc(50% - 42.5vw)!important;
+}
+
+hr {
+    height: 3px;
+}

@@ -1,9 +1,15 @@
 from flask import Flask, request, render_template
 from flask_cors import CORS
+from flask_socketio import SocketIO, emit
 import json
 
 app = Flask(__name__)
 CORS(app)
+
+socketio = SocketIO(app, cors_allowed_origins='*')
+
+def refersh_page():
+    socketio.emit('refersh', {'data': "refersh"})
 
 @app.route("/api/changeDates", methods=["POST"])
 def change_dates():
@@ -48,6 +54,8 @@ def add_schedule():
 
     with open('data.json', 'w', encoding='utf-8') as json_file:
         json.dump(data, json_file, ensure_ascii=False)
+    
+    refersh_page()
 
     return "", 204
 
@@ -66,6 +74,8 @@ def remove_schedule():
 
     with open('data.json', 'w', encoding='utf-8') as json_file:
         json.dump(data, json_file, ensure_ascii=False)
+    
+    refersh_page()
 
     return "", 204
 
@@ -114,6 +124,8 @@ def add_leave_officer():
 
     with open('data.json', 'w', encoding='utf-8') as json_file:
         json.dump(data, json_file, ensure_ascii=False)
+    
+    refersh_page()
 
     return "", 204
 
@@ -132,6 +144,8 @@ def remove_leave_officer():
 
     with open('data.json', 'w', encoding='utf-8') as json_file:
         json.dump(data, json_file, ensure_ascii=False)
+    
+    refersh_page()
 
     return "", 204
 
@@ -148,11 +162,17 @@ def change_reminder():
     with open('data.json', 'w', encoding='utf-8') as json_file:
         json.dump(data, json_file, ensure_ascii=False)
     
+    refersh_page()
+    
     return "", 204
 
 @app.route("/")
+def render_client():
+    return render_template("client.html")
+
+@app.route("/test")
 def test():
-    return json.dumps({"123": 456})
+    return "test"
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=9000)
+    socketio.run(app, host="0.0.0.0", port=9000, keyfile="ssl/key.pem", certfile="ssl/cert.pem")
